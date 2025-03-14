@@ -105,7 +105,7 @@ function modeFactory({ modeConfiguration }) {
       toolbarService.createButtonSection('measurementSection', [
         'Length',
         'Bidirectional',
-        'ArrowAnnotate',
+        // 'ArrowAnnotate',
         'EllipticalROI',
         'RectangleROI',
         'CircleROI',

@@ -212,15 +212,41 @@ function commandsModule({
         return;
       }
 
+      const element = getActiveViewportEnabledElement(viewportGridService);
+      const annotation = cornerstoneTools.annotation.state.getAnnotation(uid);
+
       if (!labelConfig) {
+        if (annotation.data.label !== measurement.label || !window.doneOnce) {
+          // cornerstoneTools.AnnotationTool.createAnnotationMemo(element.viewport.element, {
+          //   ...annotation,
+          //   data: { ...annotation.data, label: measurement.label },
+          // });
+          measurementService.update(uid, { ...measurement, label: measurement.label }, true);
+          window.doneOnce = true;
+        }
+
         const label = await callInputDialog({
           uiDialogService,
           title: 'Edit Measurement Label',
-          placeholder: measurement.label || 'Enter new label',
-          defaultValue: measurement.label,
+          placeholder: annotation.data.label || 'Enter new label',
+          defaultValue: annotation.data.label,
         });
 
         if (label !== undefined && label !== null) {
+          if (annotation.data.label !== label) {
+            cornerstoneTools.AnnotationTool.createAnnotationMemo(
+              element.viewport.element,
+              {
+                ...annotation,
+                data: { ...annotation.data, label: label },
+              },
+              {
+                textChange: true,
+                oldText: measurement.label,
+                newText: label,
+              }
+            );
+          }
           measurementService.update(uid, { ...measurement, label }, true);
         }
         return;
@@ -345,6 +371,12 @@ function commandsModule({
     },
 
     removeMeasurement: ({ uid }) => {
+      const element = getActiveViewportEnabledElement(viewportGridService);
+      const annotation = cornerstoneTools.annotation.state.getAnnotation(uid);
+
+      cornerstoneTools.AnnotationTool.createAnnotationMemo(element.viewport.element, annotation, {
+        deleting: true,
+      });
       measurementService.remove(uid);
     },
 
@@ -1359,7 +1391,8 @@ function commandsModule({
     deleteActiveAnnotation: () => {
       const activeAnnotationsUID = cornerstoneTools.annotation.selection.getAnnotationsSelected();
       activeAnnotationsUID.forEach(activeAnnotationUID => {
-        measurementService.remove(activeAnnotationUID);
+        actions.removeMeasurement({ uid: activeAnnotationUID });
+        // measurementService.remove(activeAnnotationUID);
       });
     },
     undo: () => {

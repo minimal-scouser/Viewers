@@ -167,6 +167,16 @@ const bindings = [
     label: 'Delete Annotation',
     keys: ['backspace'],
   },
+  {
+    commandName: 'undo',
+    label: 'Undo Annotation',
+    keys: ['command+z'],
+  },
+  {
+    commandName: 'redo',
+    label: 'Redo Annotation',
+    keys: ['command+shift+z'],
+  },
   // after we have the ui for undo/redo, we can add these back in
   // {
   //   commandName: 'undo',

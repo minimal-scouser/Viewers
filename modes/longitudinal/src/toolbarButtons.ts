@@ -342,17 +342,17 @@ const toolbarButtons: Button[] = [
       evaluate: 'evaluate.cornerstoneTool',
     },
   },
-  {
-    id: 'ArrowAnnotate',
-    uiType: 'ohif.toolButton',
-    props: {
-      icon: 'tool-annotate',
-      label: 'Annotation',
-      tooltip: 'Arrow Annotate',
-      commands: setToolActiveToolbar,
-      evaluate: 'evaluate.cornerstoneTool',
-    },
-  },
+  // {
+  //   id: 'ArrowAnnotate',
+  //   uiType: 'ohif.toolButton',
+  //   props: {
+  //     icon: 'tool-annotate',
+  //     label: 'Annotation',
+  //     tooltip: 'Arrow Annotate',
+  //     commands: setToolActiveToolbar,
+  //     evaluate: 'evaluate.cornerstoneTool',
+  //   },
+  // },
   {
     id: 'EllipticalROI',
     uiType: 'ohif.toolButton',

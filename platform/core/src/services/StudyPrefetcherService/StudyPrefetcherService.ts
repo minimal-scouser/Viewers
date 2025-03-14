@@ -29,6 +29,7 @@ enum StudyPrefetchOrder {
   closest = 'closest',
   downward = 'downward',
   upward = 'upward',
+  all = 'all',
 }
 
 /**
@@ -165,6 +166,7 @@ class StudyPrefetcherService extends PubSubService {
     this._subscriptions = [];
 
     Object.assign(this.config, configuration);
+    this.config.order = StudyPrefetchOrder.all;
   }
 
   public onModeEnter(): void {
@@ -327,6 +329,10 @@ class StudyPrefetcherService extends PubSubService {
     );
   }
 
+  private _getAllDisplaySets(displaySets: DisplaySet[], activeDisplaySetIndex: number) {
+    return [...displaySets];
+  }
+
   private _getClosestDisplaySets(displaySets: DisplaySet[], activeDisplaySetIndex: number) {
     const sortedDisplaySets = [];
     let previousIndex = activeDisplaySetIndex - 1;
@@ -382,6 +388,7 @@ class StudyPrefetcherService extends PubSubService {
       [StudyPrefetchOrder.closest]: this._getClosestDisplaySets,
       [StudyPrefetchOrder.downward]: this._getDownwardDisplaySets,
       [StudyPrefetchOrder.upward]: this._getUpwardDisplaySets,
+      [StudyPrefetchOrder.all]: this._getAllDisplaySets,
     };
     const { order } = this.config;
     const fnGetDisplaySets = getDisplaySetsFunctionsMap[order];
@@ -395,10 +402,13 @@ class StudyPrefetcherService extends PubSubService {
 
     // Remove any active displaySet that may still be in the activeDisplaySetsInstanceUIDs.
     // That may happen when activeDisplaySetsInstanceUIDs has more than one element.
-    return fnGetDisplaySets
+    const allDisplaySets = fnGetDisplaySets
       .call(this, displaySets, activeDisplaySetIndex)
-      .filter(ds => !uidsSet.has(ds.displaySetInstanceUID))
-      .slice(0, displaySetsCount);
+      .filter(ds => !uidsSet.has(ds.displaySetInstanceUID));
+
+    return allDisplaySets;
+
+    // return a.slice(0, displaySetsCount);
   }
 
   private _getDisplaySets() {
@@ -646,14 +656,15 @@ class StudyPrefetcherService extends PubSubService {
    * Start prefetching the display sets based on the active viewport and app configuration.
    */
   private _startPrefetching(): void {
+    console.log('called', this.config);
     if (this._isRunning) {
       return;
     }
 
-    if (!this.config.enabled) {
-      console.log('StudyPrefetcher is not enabled');
-      return;
-    }
+    // if (!this.config.enabled) {
+    //   console.log('StudyPrefetcher is not enabled');
+    //   return;
+    // }
 
     this._isRunning = true;
 
