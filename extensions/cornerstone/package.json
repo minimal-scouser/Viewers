@@ -36,9 +36,11 @@
   "peerDependencies": {
     "@cornerstonejs/codec-charls": "^1.2.3",
     "@cornerstonejs/codec-libjpeg-turbo-8bit": "^1.2.2",
-    "@cornerstonejs/codec-openjpeg": "^1.2.4",
+    "test-codec-openjpeg": "1.2.4-alpha",
+    "@cornerstonejs/codec-openjpeg": "npm:test-codec-openjpeg",
     "@cornerstonejs/codec-openjph": "^2.4.5",
-    "@cornerstonejs/dicom-image-loader": "^3.10.1",
+    "test-dicom-image-loader": "2.19.13",
+    "@cornerstonejs/dicom-image-loader": "npm:test-dicom-image-loader",
     "@ohif/core": "3.10.1",
     "@ohif/ui": "3.10.1",
     "dcmjs": "*",

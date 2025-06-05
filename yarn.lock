@@ -1433,10 +1433,15 @@
   resolved "https://registry.yarnpkg.com/@cornerstonejs/codec-libjpeg-turbo-8bit/-/codec-libjpeg-turbo-8bit-1.2.2.tgz#ae384b149d6655e3dd6e18b9891fab479ab5e144"
   integrity sha512-aAUMK2958YNpOb/7G6e2/aG7hExTiFTASlMt/v90XA0pRHdWiNg5ny4S5SAju0FbIw4zcMnR0qfY+yW3VG2ivg==
 
-"@cornerstonejs/codec-openjpeg@^1.2.2", "@cornerstonejs/codec-openjpeg@^1.2.4":
+"@cornerstonejs/codec-openjpeg@^1.2.2":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@cornerstonejs/codec-openjpeg/-/codec-openjpeg-1.2.4.tgz#c7cf67a34091eb74a6676abec80a5251c412b551"
   integrity sha512-UT2su6xZZnCPSuWf2ldzKa/2+guQ7BGgfBSKqxanggwJHh48gZqIAzekmsLyJHMMK5YDK+ti+fzvVJhBS3Xi/g==
+
+"@cornerstonejs/codec-openjpeg@npm:test-codec-openjpeg":
+  version "1.2.4-alpha"
+  resolved "https://registry.yarnpkg.com/test-codec-openjpeg/-/test-codec-openjpeg-1.2.4-alpha.tgz#bf6d9beff91cdf04652f72f6fa6eb8d91e265b9a"
+  integrity sha512-XBP6XoWC+uimyp1YHdkDsiGehVZ5YKD72I/7yTBfwmIP1LwAwmYCuHn9QfXSv9JeCE6jjoBq9C4+E/frgEk3fg==
 
 "@cornerstonejs/codec-openjph@^2.4.5":
   version "2.4.5"
@@ -1453,19 +1458,19 @@
     gl-matrix "^3.4.3"
     loglevel "^1.9.2"
 
-"@cornerstonejs/dicom-image-loader@^3.10.1":
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/@cornerstonejs/dicom-image-loader/-/dicom-image-loader-3.10.1.tgz#93744c03101135aa51324bce043ea1e40544ec5b"
-  integrity sha512-w/55TI05KV3mP/RtL0ds+jfh19KlBZajJDgXystV489duvqJJUH27C+eZyrGFqbA3a+EDv4GYQa4jw/MDkGGqA==
+"@cornerstonejs/dicom-image-loader@npm:test-dicom-image-loader":
+  version "2.19.13"
+  resolved "https://registry.yarnpkg.com/test-dicom-image-loader/-/test-dicom-image-loader-2.19.13.tgz#d377e585303ded1640c4dd79c4c9385bd9e7e5d8"
+  integrity sha512-ffDZW8FJj6jHwoe1dkpDjBBCU/5atkMwT9TY9svDJvYg+YPGplKliZDCnpwr6XquLnksBwXUMK96OfQNJIATcg==
   dependencies:
     "@cornerstonejs/codec-charls" "^1.2.3"
     "@cornerstonejs/codec-libjpeg-turbo-8bit" "^1.2.2"
-    "@cornerstonejs/codec-openjpeg" "^1.2.2"
+    "@cornerstonejs/codec-openjpeg" "npm:test-codec-openjpeg"
     "@cornerstonejs/codec-openjph" "^2.4.5"
     comlink "^4.4.1"
-    dicom-parser "^1.8.9"
     jpeg-lossless-decoder-js "^2.1.0"
     pako "^2.0.4"
+    test-codec-openjpeg "1.2.4-alpha"
     uuid "^9.0.0"
 
 "@cornerstonejs/labelmap-interpolation@^3.10.1":
@@ -20072,6 +20077,26 @@ terser@^5.0.0, terser@^5.10.0, terser@^5.26.0:
     acorn "^8.8.2"
     commander "^2.20.0"
     source-map-support "~0.5.20"
+
+test-codec-openjpeg@1.2.4-alpha:
+  version "1.2.4-alpha"
+  resolved "https://registry.yarnpkg.com/test-codec-openjpeg/-/test-codec-openjpeg-1.2.4-alpha.tgz#bf6d9beff91cdf04652f72f6fa6eb8d91e265b9a"
+  integrity sha512-XBP6XoWC+uimyp1YHdkDsiGehVZ5YKD72I/7yTBfwmIP1LwAwmYCuHn9QfXSv9JeCE6jjoBq9C4+E/frgEk3fg==
+
+test-dicom-image-loader@2.19.13:
+  version "2.19.13"
+  resolved "https://registry.yarnpkg.com/test-dicom-image-loader/-/test-dicom-image-loader-2.19.13.tgz#d377e585303ded1640c4dd79c4c9385bd9e7e5d8"
+  integrity sha512-ffDZW8FJj6jHwoe1dkpDjBBCU/5atkMwT9TY9svDJvYg+YPGplKliZDCnpwr6XquLnksBwXUMK96OfQNJIATcg==
+  dependencies:
+    "@cornerstonejs/codec-charls" "^1.2.3"
+    "@cornerstonejs/codec-libjpeg-turbo-8bit" "^1.2.2"
+    "@cornerstonejs/codec-openjpeg" "npm:test-codec-openjpeg"
+    "@cornerstonejs/codec-openjph" "^2.4.5"
+    comlink "^4.4.1"
+    jpeg-lossless-decoder-js "^2.1.0"
+    pako "^2.0.4"
+    test-codec-openjpeg "1.2.4-alpha"
+    uuid "^9.0.0"
 
 test-exclude@^6.0.0:
   version "6.0.0"
